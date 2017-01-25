@@ -7,7 +7,7 @@ public class SetIdGGFunction implements TableFunction {
 
     @Override
     public void excute(TableModelExp model) {
-        String nameIdGG = JOptionPane.showInputDialog("Р’РІРµРґРёС‚Рµ ID РіР»РѕР±РіСЂСѓРїРїС‹ ");
+        String nameIdGG = JOptionPane.showInputDialog("Введите название ID глобгруппы");
         System.out.println(nameIdGG);
         
     }

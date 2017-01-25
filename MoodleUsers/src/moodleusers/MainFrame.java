@@ -1,4 +1,5 @@
 package moodleusers;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,9 +21,7 @@ public class MainFrame extends JFrame {
     private static final String NAME_BUTTON_SetIdGG = "Установить ID глобгруппе";
     private static final String NAME_BUTTON_SetEndPasswords = "Заполнить пароли";
     private static final String NAME_BUTTON_Save = "Сохранить как";
-    private JPanel contentPane; //панель, в которую мы все запихиваем
     private GridBagConstraints gbc_scrollPane;
-    private JScrollPane scrollPane;//прокрутка, на которуюмы будем помещатьтаблицу
     private JTable table;//JTable внутри себя не содержит данные, а служит только для их отображения
     private TableModelExp model;//реализует интерфейс
     //хранит данные ячеек таблицы и дополнительную служебную информацию об этих ячейках 
@@ -32,24 +31,21 @@ public class MainFrame extends JFrame {
     MainFrame() {
         super("MoodleUsers");//устанавливаю заголовок 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//завершение работы после закрытия окна
-        //setBounds(100, 100, 600, 600);//размер окна
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));//установка рамки
-        setContentPane(contentPane);//установить у этого окна панель
-
-        GridBagLayout myGridBagLayout = new GridBagLayout();
-      myGridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 132, 0, 0};
-        //Это поле содержит переопределения к ширине минимума столбца.
-      myGridBagLayout.rowHeights = new int[]{23, 0, 111, 0, 0, 0, 0, 0, 0, 0};
+        setBounds(100, 100, 600, 600);//размер окна
         
-       myGridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+        GridBagLayout myGridBagLayout = new GridBagLayout();
+        myGridBagLayout.columnWidths = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1};
+        //Это поле содержит переопределения к ширине минимума столбца.
+        myGridBagLayout.rowHeights = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
+        myGridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
         //Это поле содержит переопределения к весам столбца.
-      myGridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-        contentPane.setLayout(myGridBagLayout);//установить для панели способ размещения
+        myGridBagLayout.rowWeights = new double[]{1.0};
+        setLayout(myGridBagLayout);//установить для панели способ размещения
 
 
         gbc_scrollPane = new GridBagConstraints();
-        gbc_scrollPane.insets = new Insets(5, 5, 5, 5);
+        gbc_scrollPane.insets = new Insets(5, 5, 5, 1);
         /*Поле insets позволяет задать для компонента 
          отступы от краев выделенной ему области. 
          По умолчанию такие отступы отсутствуют.*/
@@ -78,27 +74,30 @@ public class MainFrame extends JFrame {
         model.setTable(15, 8);
         table = new JTable(model);//установка модели таблице
         //установка таблицы на прокрутку
-        contentPane.add(new JScrollPane(table), gbc_scrollPane);
+        add(new JScrollPane(table), gbc_scrollPane);
 
         panel = new JPanel();
         gbc_panel = new GridBagConstraints();
-        gbc_panel.insets = new Insets(5, 5, 5, 5);
+        gbc_panel.insets = new Insets(5, 1, 5, 5);
         gbc_panel.gridheight = 1;
         gbc_panel.gridwidth = 2;
         gbc_panel.fill = GridBagConstraints.BOTH;
         gbc_panel.gridx = 8;
         gbc_panel.gridy = 0;
 
-        contentPane.add(panel, gbc_panel);
+       add(panel, gbc_panel);
 
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JButton buttonAddUsers = newFunctionButton(NAME_BUTTON_AddUsers, new AddUsersFunction());
         JButton buttonSetCity = newFunctionButton(NAME_BUTTON_SetCity, new SetCityFunction());
         JButton buttonSetIdGG = newFunctionButton(NAME_BUTTON_SetIdGG, new SetIdGGFunction());
-        JButton buttonAddUsers = newFunctionButton(NAME_BUTTON_AddUsers, new AddUsersFunction());
+        JButton buttonSetEndPasswords = newFunctionButton(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction());
+        JButton buttonSave = newFunctionButton(NAME_BUTTON_Save, new SaveFunction());
+
 
         setVisible(true);//сделать видимым
-        pack();
+         pack();
     }
 
     public JButton newFunctionButton(final String nameButton, final TableFunction myTableFunction) {

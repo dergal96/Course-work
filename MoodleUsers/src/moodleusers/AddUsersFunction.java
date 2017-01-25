@@ -7,7 +7,7 @@ public class AddUsersFunction implements TableFunction {
 
     @Override
     public void excute(TableModelExp model) {
-        String nameUser = JOptionPane.showInputDialog("Р’РІРµРґРёС‚Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ");
+        String nameUser = JOptionPane.showInputDialog("Ввести список пользователей");
         System.out.println(nameUser);
         
     }
