@@ -71,7 +71,7 @@ public class MainFrame extends JFrame {
          * Верхней левой ячейке соответствуют нулевые значения.*/
 
         model = new TableModelExp();//создание модели
-        model.setTable(15, 8);
+        model.setCountRowDefault(15);
         table = new JTable(model);//установка модели таблице
         //установка таблицы на прокрутку
         add(new JScrollPane(table), gbc_scrollPane);
