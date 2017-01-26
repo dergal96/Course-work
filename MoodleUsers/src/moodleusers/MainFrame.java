@@ -32,7 +32,7 @@ public class MainFrame extends JFrame {
         super("MoodleUsers");//устанавливаю заголовок 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//завершение работы после закрытия окна
         setBounds(100, 100, 600, 600);//размер окна
-        
+
         GridBagLayout myGridBagLayout = new GridBagLayout();
         myGridBagLayout.columnWidths = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1};
         //Это поле содержит переопределения к ширине минимума столбца.
@@ -85,22 +85,22 @@ public class MainFrame extends JFrame {
         gbc_panel.gridx = 8;
         gbc_panel.gridy = 0;
 
-       add(panel, gbc_panel);
+        add(panel, gbc_panel);
 
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        JButton buttonAddUsers = newFunctionButton(NAME_BUTTON_AddUsers, new AddUsersFunction());
-        JButton buttonSetCity = newFunctionButton(NAME_BUTTON_SetCity, new SetCityFunction());
-        JButton buttonSetIdGG = newFunctionButton(NAME_BUTTON_SetIdGG, new SetIdGGFunction());
-        JButton buttonSetEndPasswords = newFunctionButton(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction());
-        JButton buttonSave = newFunctionButton(NAME_BUTTON_Save, new SaveFunction());
+        JButton buttonAddUsers = newFunctionButton(NAME_BUTTON_AddUsers, new AddUsersFunction(), model);
+        JButton buttonSetCity = newFunctionButton(NAME_BUTTON_SetCity, new SetCityFunction(), model);
+        JButton buttonSetIdGG = newFunctionButton(NAME_BUTTON_SetIdGG, new SetIdGGFunction(), model);
+        JButton buttonSetEndPasswords = newFunctionButton(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction(), model);
+        JButton buttonSave = newFunctionButton(NAME_BUTTON_Save, new SaveFunction(), model);
 
 
         setVisible(true);//сделать видимым
-         pack();
+        pack();
     }
 
-    public JButton newFunctionButton(final String nameButton, final TableFunction myTableFunction) {
+    public JButton newFunctionButton(final String nameButton, final TableFunction myTableFunction, final TableModelExp model) {
         JButton button = new JButton(nameButton);
         button.addActionListener(new ActionListener() {
             @Override
