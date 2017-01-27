@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,8 +14,14 @@ import javax.swing.JTextArea;
 
 public class AddUsersFunction implements TableFunction {
 
+    ArrayList<String> strUser = null;
+    TableModelExp model = null;
+    Translit tr = null;
+
     @Override
     public void excute(final TableModelExp model) {
+        this.model = model;
+        tr = new Translit();
         final JFrame frameAddUsers = new JFrame("ƒобавление списка пользователей");
         frameAddUsers.setBounds(200, 120, 500, 600);
         frameAddUsers.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -27,19 +34,14 @@ public class AddUsersFunction implements TableFunction {
 
         JButton buttonSaveUsers = new JButton("—охранить");
         frameAddUsers.getContentPane().add(buttonSaveUsers, BorderLayout.SOUTH);
-
-
         buttonSaveUsers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                //model.removeRow(0);//разобратьс€с удалением строки!
-
+                strUser = new ArrayList<>();
                 StringTokenizer st = new StringTokenizer(textArea.getText(), "\n");
                 int kolstr = 0;
                 while (st.hasMoreTokens()) {
-
-                    System.out.println(st.nextToken());
+                    strUser.add(st.nextToken());
                     kolstr++;
                 }
                 //если диалоговое окно закрыть,закрываетс€ и окно ввода пользователей
@@ -47,9 +49,6 @@ public class AddUsersFunction implements TableFunction {
                 if (kolstr == 0) {
                     JOptionPane.showMessageDialog(frameAddUsers, "¬ведите список пользователей!");
                 }
-
-
-
                 if (kolstr < model.getcountRow()) {
                     for (int i = model.getcountRow(); i > kolstr; i--) {
                         model.removeRow(i - 1);
@@ -61,32 +60,28 @@ public class AddUsersFunction implements TableFunction {
                     }
                 }
 
-
-
-
-
-
-
-
-                /*int i = 2;
-                 StringTokenizer st = new StringTokenizer(textArea.getText(), " ");
-                 while (st.hasMoreTokens() & i < 4) {
-                 model.setValueAt(st.nextToken(), 0, i);
-                 //System.out.println(st.nextToken());
-                 i++;
-                 }*/ //textArea.getText();
-                {
-                    frameAddUsers.dispose();
+                for (int i = 0; i < kolstr; i++) {
+                    parsLine(i);
                 }
-                //model.setValueAt(textArea.getText(),1, 1);
-
+                frameAddUsers.dispose();
             }
         });
-
-
-
     }
 
-    public void parsLine(String str) {
+    public void parsLine(int index) {
+        int i = 2;
+        StringTokenizer st = new StringTokenizer(strUser.get(index), " ");
+        while (st.hasMoreTokens() & i < 4) {
+            String slovo = st.nextToken();
+            if (i == 2) {//if slovo is family name
+                model.setValueAt(tr.toTranslit(slovo).toLowerCase(), index, i - 2);//запись фамилии на англ в 1столб
+                model.setValueAt(slovo, index, i);
+                model.setValueAt(tr.toTranslit(slovo).toLowerCase()+"@mail.ru", index, i+2);
+            }
+            else model.setValueAt(slovo, index, i); //if slovo is name
+            i++;
+        }
+
+
     }
 }

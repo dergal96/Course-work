@@ -30,7 +30,7 @@ public class MainFrame extends JFrame {
     MainFrame() {
         super("MoodleUsers");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 600, 600);
+        setBounds(100, 100, 800, 500);
        
         GridBagLayout myGridBagLayout = new GridBagLayout();
         myGridBagLayout.columnWidths = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1};
@@ -74,7 +74,7 @@ public class MainFrame extends JFrame {
 
 
         setVisible(true);
-        pack();
+        //pack();
     }
 
     public JButton newFunctionButton(final String nameButton, final TableFunction myTableFunction, final TableModelExp model) {
