@@ -38,7 +38,7 @@ public class AddUsersFunction implements TableFunction {
             @Override
             public void actionPerformed(ActionEvent e) {
                 strUser = new ArrayList<>();
-                StringTokenizer st = new StringTokenizer(textArea.getText(), "\n");
+                StringTokenizer st = new StringTokenizer(textArea.getText(), "\n\r");
                 int kolstr = 0;
                 while (st.hasMoreTokens()) {
                     strUser.add(st.nextToken());
@@ -49,18 +49,18 @@ public class AddUsersFunction implements TableFunction {
                 if (kolstr == 0) {
                     JOptionPane.showMessageDialog(frameAddUsers, "¬ведите список пользователей!");
                 }
-                if (kolstr < model.getcountRow()) {
-                    for (int i = model.getcountRow(); i > kolstr; i--) {
+                if (kolstr < model.getRowCount()) {
+                    for (int i = model.getRowCount(); i > kolstr; i--) {
                         model.removeRow(i - 1);
                     }
 
-                } else if (kolstr > model.getcountRow()) {
-                    for (int i = 0; i < kolstr - model.getcountRow(); i++) {
+                } else if (kolstr > model.getRowCount()) {
+                    int coutAddRow = kolstr - model.getRowCount();
+                    for (int i = 0; i < coutAddRow; i++) {
                         model.addRow(new Object[model.getColumnCount()]);
                     }
                 }
-
-                for (int i = 0; i < kolstr; i++) {
+                for (int i = 0; i < model.getRowCount(); i++) {
                     parsLine(i);
                 }
                 frameAddUsers.dispose();
@@ -76,9 +76,10 @@ public class AddUsersFunction implements TableFunction {
             if (i == 2) {//if slovo is family name
                 model.setValueAt(tr.toTranslit(slovo).toLowerCase(), index, i - 2);//запись фамилии на англ в 1столб
                 model.setValueAt(slovo, index, i);
-                model.setValueAt(tr.toTranslit(slovo).toLowerCase()+"@mail.ru", index, i+2);
+                model.setValueAt(tr.toTranslit(slovo).toLowerCase() + "@mail.ru", index, i + 2);
+            } else {
+                model.setValueAt(slovo, index, i); //if slovo is name
             }
-            else model.setValueAt(slovo, index, i); //if slovo is name
             i++;
         }
 

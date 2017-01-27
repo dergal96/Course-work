@@ -17,7 +17,7 @@ import javax.swing.text.BadLocationException;
 public class MainFrame extends JFrame {
 
     private static final String NAME_BUTTON_AddUsers = "Ввести пользователей";
-    private static final String NAME_BUTTON_SetCity = "Установитьгород";
+    private static final String NAME_BUTTON_SetCity = "Установить город";
     private static final String NAME_BUTTON_SetIdGG = "Установить ID глобгруппе";
     private static final String NAME_BUTTON_SetEndPasswords = "Заполнить пароль";
     private static final String NAME_BUTTON_Save = "Сохранить как";

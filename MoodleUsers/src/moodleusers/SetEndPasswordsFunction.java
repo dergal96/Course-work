@@ -7,7 +7,10 @@ public class SetEndPasswordsFunction implements TableFunction {
     @Override
     public void excute(TableModelExp model) {
         String nameEndPasswords = JOptionPane.showInputDialog("Введите окончание пароля");
-        System.out.println(nameEndPasswords);
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            model.setValueAt(model.getValueAt(i, 0) + nameEndPasswords, i, 1);
+        }
         
     }
 }

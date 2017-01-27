@@ -8,9 +8,8 @@ import javax.swing.table.DefaultTableModel;
 
 class TableModelExp extends DefaultTableModel {
 
-    private String[] columnName = {"username", "password",
-        "lastname", "firstname", "email", "city", "cohort"};
-    private int countRow = 0;
+    private String[] columnName = {"username*", "password*",
+        "lastname*", "firstname*", "email*", "city", "cohort"};
 
     public Class<?> getColumnClass(int columnIndex) {
         //все ячейки имеют строковые значения
@@ -21,14 +20,9 @@ class TableModelExp extends DefaultTableModel {
         //уставливаю количество строк поумалчанию
         //устанавливаю названия колонок
         setColumnIdentifiers(columnName);
-        countRow = row;
         //добавляю строки в таблицу в соотвествии с числом row
         for (int rowIndex = 0; rowIndex < row; rowIndex++) {
             addRow(new Object[getColumnCount()]);
         }
-    }
-
-    public int getcountRow() {
-        return countRow;
     }
 }
