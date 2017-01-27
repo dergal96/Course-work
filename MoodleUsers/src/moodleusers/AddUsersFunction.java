@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.StringTokenizer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,7 +14,7 @@ import javax.swing.JTextArea;
 public class AddUsersFunction implements TableFunction {
 
     @Override
-    public void excute(TableModelExp model) {
+    public void excute(final TableModelExp model) {
         final JFrame frameAddUsers = new JFrame("Добавление списка пользователей");
         frameAddUsers.setBounds(200, 120, 500, 600);
         frameAddUsers.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -31,13 +32,61 @@ public class AddUsersFunction implements TableFunction {
         buttonSaveUsers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println(textArea.getText());
-                frameAddUsers.dispose();
+
+                //model.removeRow(0);//разобратьсяс удалением строки!
+
+                StringTokenizer st = new StringTokenizer(textArea.getText(), "\n");
+                int kolstr = 0;
+                while (st.hasMoreTokens()) {
+
+                    System.out.println(st.nextToken());
+                    kolstr++;
+                }
+                //если диалоговое окно закрыть,закрывается и окно ввода пользователей
+                //надо подумать!!!!
+                if (kolstr == 0) {
+                    JOptionPane.showMessageDialog(frameAddUsers, "Введите список пользователей!");
+                }
+
+
+
+                if (kolstr < model.getcountRow()) {
+                    for (int i = model.getcountRow(); i > kolstr; i--) {
+                        model.removeRow(i - 1);
+                    }
+
+                } else if (kolstr > model.getcountRow()) {
+                    for (int i = 0; i < kolstr - model.getcountRow(); i++) {
+                        model.addRow(new Object[model.getColumnCount()]);
+                    }
+                }
+
+
+
+
+
+
+
+
+                /*int i = 2;
+                 StringTokenizer st = new StringTokenizer(textArea.getText(), " ");
+                 while (st.hasMoreTokens() & i < 4) {
+                 model.setValueAt(st.nextToken(), 0, i);
+                 //System.out.println(st.nextToken());
+                 i++;
+                 }*/ //textArea.getText();
+                {
+                    frameAddUsers.dispose();
+                }
+                //model.setValueAt(textArea.getText(),1, 1);
 
             }
         });
 
 
 
+    }
+
+    public void parsLine(String str) {
     }
 }

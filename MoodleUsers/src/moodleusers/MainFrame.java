@@ -16,64 +16,41 @@ import javax.swing.text.BadLocationException;
 
 public class MainFrame extends JFrame {
 
-    private static final String NAME_BUTTON_AddUsers = "Ввести список пользователей";
-    private static final String NAME_BUTTON_SetCity = "Установить город";
+    private static final String NAME_BUTTON_AddUsers = "Ввести пользователей";
+    private static final String NAME_BUTTON_SetCity = "Установитьгород";
     private static final String NAME_BUTTON_SetIdGG = "Установить ID глобгруппе";
-    private static final String NAME_BUTTON_SetEndPasswords = "Заполнить пароли";
+    private static final String NAME_BUTTON_SetEndPasswords = "Заполнить пароль";
     private static final String NAME_BUTTON_Save = "Сохранить как";
     private GridBagConstraints gbc_scrollPane;
-    private JTable table;//JTable внутри себя не содержит данные, а служит только для их отображения
-    private TableModelExp model;//реализует интерфейс
-    //хранит данные ячеек таблицы и дополнительную служебную информацию об этих ячейках 
-    private JPanel panel;//панельдля кнопок
+    private JTable table;
+    private TableModelExp model; 
+    private JPanel panel;
     private GridBagConstraints gbc_panel;
 
     MainFrame() {
-        super("MoodleUsers");//устанавливаю заголовок 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//завершение работы после закрытия окна
-        setBounds(100, 100, 600, 600);//размер окна
-
+        super("MoodleUsers");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 600, 600);
+       
         GridBagLayout myGridBagLayout = new GridBagLayout();
         myGridBagLayout.columnWidths = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1};
-        //Это поле содержит переопределения к ширине минимума столбца.
         myGridBagLayout.rowHeights = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-
         myGridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
-        //Это поле содержит переопределения к весам столбца.
         myGridBagLayout.rowWeights = new double[]{1.0};
-        setLayout(myGridBagLayout);//установить для панели способ размещения
-
+        setLayout(myGridBagLayout);
 
         gbc_scrollPane = new GridBagConstraints();
         gbc_scrollPane.insets = new Insets(5, 5, 5, 1);
-        /*Поле insets позволяет задать для компонента 
-         отступы от краев выделенной ему области. 
-         По умолчанию такие отступы отсутствуют.*/
-
         gbc_scrollPane.gridheight = 1;
         gbc_scrollPane.gridwidth = 7;
-        /*Поля gridwidth и gridheight определяют 
-         количество ячеек, занимаемых добавляемым компонентом.
-         Если же компонент должен занимать, например, 
-         * две смежные ячейки в одной строке, то для gridwidth нужно задать значение, равное двум,*/
-
         gbc_scrollPane.fill = GridBagConstraints.BOTH;
-        /*Поле fill определяет стратегию распределения компоненту свободного пространства ячейки или ячеек) таблицы, 
-         * если размеры компонента меньше размеров выделенного для него места.
-         * BOTH - Изменяется высота и ширина, причем таким образом, 
-         * чтобы компонент занимал все отведенное для него пространство*/
-
         gbc_scrollPane.gridx = 0;
         gbc_scrollPane.gridy = 0;
-        /*Поля gridx и gridy задают, соответственно, 
-         * номер столбца и номер строки для ячейки, 
-         * в которую будет помещен компонент. 
-         * Верхней левой ячейке соответствуют нулевые значения.*/
+        
 
-        model = new TableModelExp();//создание модели
-        model.setCountRowDefault(15);
-        table = new JTable(model);//установка модели таблице
-        //установка таблицы на прокрутку
+        model = new TableModelExp();
+        model.setCountRowDefault(10);
+        table = new JTable(model);
         add(new JScrollPane(table), gbc_scrollPane);
 
         panel = new JPanel();
@@ -96,7 +73,7 @@ public class MainFrame extends JFrame {
         JButton buttonSave = newFunctionButton(NAME_BUTTON_Save, new SaveFunction(), model);
 
 
-        setVisible(true);//сделать видимым
+        setVisible(true);
         pack();
     }
 
