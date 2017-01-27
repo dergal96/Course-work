@@ -6,7 +6,7 @@ public class SaveFunction implements TableFunction {
 
     @Override
     public void excute(TableModelExp model) {
-        String dataUsers = "";
+        String dataUsers = "username;password;lastname;firstname;email;city;cohort1\n";
         
          for (int j, i = 0 ; i < model.getRowCount(); i++) {
                 for (j = 0; j < model.getColumnCount() - 1; j++) {
