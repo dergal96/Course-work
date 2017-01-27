@@ -55,8 +55,7 @@ public class AddUsersFunction implements TableFunction {
                     }
 
                 } else if (kolstr > model.getRowCount()) {
-                    int coutAddRow = kolstr - model.getRowCount();
-                    for (int i = 0; i < coutAddRow; i++) {
+                    for (int i = model.getRowCount(); i <kolstr; i++) {
                         model.addRow(new Object[model.getColumnCount()]);
                     }
                 }
