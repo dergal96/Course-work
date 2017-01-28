@@ -17,6 +17,7 @@ public class AddUsersFunction implements TableFunction {
     ArrayList<String> strUser = null;
     TableModelExp model = null;
     Translit tr = null;
+    int kolstr = 0;
 
     @Override
     public void excute(final TableModelExp model) {
@@ -39,7 +40,6 @@ public class AddUsersFunction implements TableFunction {
             public void actionPerformed(ActionEvent e) {
                 strUser = new ArrayList<>();
                 StringTokenizer st = new StringTokenizer(textArea.getText(), "\n\r");
-                int kolstr = 0;
                 while (st.hasMoreTokens()) {
                     strUser.add(st.nextToken());
                     kolstr++;
@@ -55,7 +55,7 @@ public class AddUsersFunction implements TableFunction {
                     }
 
                 } else if (kolstr > model.getRowCount()) {
-                    for (int i = model.getRowCount(); i <kolstr; i++) {
+                    for (int i = model.getRowCount(); i < kolstr; i++) {
                         model.addRow(new Object[model.getColumnCount()]);
                     }
                 }
@@ -84,4 +84,6 @@ public class AddUsersFunction implements TableFunction {
 
 
     }
+    
+  
 }
