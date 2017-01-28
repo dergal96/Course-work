@@ -12,16 +12,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class AddUsersFunction implements TableFunction {
+public class AddUsersFunction extends TableFunction {
 
-    ArrayList<String> strUser = null;
-    TableModelExp model = null;
+    ArrayList<String> usersNames = null;
     Translit tr = null;
     int kolstr = 0;
 
+    AddUsersFunction(TableModelExp model) {
+        super(model);}
+
+  
+
     @Override
-    public void excute(final TableModelExp model) {
-        this.model = model;
+    public void excute() {
+        
         tr = new Translit();
         final JFrame frameAddUsers = new JFrame("Добавление списка пользователей");
         frameAddUsers.setBounds(200, 120, 500, 600);
@@ -38,10 +42,10 @@ public class AddUsersFunction implements TableFunction {
         buttonSaveUsers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                strUser = new ArrayList<>();
+                usersNames = new ArrayList<>();
                 StringTokenizer st = new StringTokenizer(textArea.getText(), "\n\r");
                 while (st.hasMoreTokens()) {
-                    strUser.add(st.nextToken());
+                    usersNames.add(st.nextToken());
                     kolstr++;
                 }
                 //если диалоговое окно закрыть,закрывается и окно ввода пользователей
@@ -69,7 +73,7 @@ public class AddUsersFunction implements TableFunction {
 
     public void parsLine(int index) {
         int i = 2;
-        StringTokenizer st = new StringTokenizer(strUser.get(index), " ");
+        StringTokenizer st = new StringTokenizer(usersNames.get(index), " ");
         while (st.hasMoreTokens() & i < 4) {
             String slovo = st.nextToken();
             if (i == 2) {//if slovo is family name

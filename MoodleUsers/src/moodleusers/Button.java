@@ -4,17 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
-public class Button {
+public class Button extends JButton {
 
-    public JButton createButton(String nameButton, final TableFunction myTableFunction, final TableModelExp model) {
-        JButton button = new JButton(nameButton);
-        button.addActionListener(new ActionListener() {
+    public Button(String nameButton, final TableFunction myTableFunction) {
+        super(nameButton);
+        addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                myTableFunction.excute(model);
+                myTableFunction.excute();
             }
         });
-        return button;
-
     }
 }

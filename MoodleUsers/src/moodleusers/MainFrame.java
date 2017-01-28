@@ -23,8 +23,7 @@ public class MainFrame extends JFrame {
     private TableModelExp model;
     private JPanel panel;
     private GridBagConstraints gbc_panel;
-    private final Button myButton;
-    
+      
 
     MainFrame() {
         super("MoodleUsers");
@@ -64,12 +63,16 @@ public class MainFrame extends JFrame {
 
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        myButton = new Button();
-        panel.add(myButton.createButton(NAME_BUTTON_AddUsers, new AddUsersFunction(), model));
-        panel.add(myButton.createButton(NAME_BUTTON_SetCity, new SetCityFunction(), model));
-        panel.add(myButton.createButton(NAME_BUTTON_SetIdGG, new SetIdGGFunction(), model));
-        panel.add(myButton.createButton(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction(), model));
-        panel.add(myButton.createButton(NAME_BUTTON_Save, new SaveFunction(), model));
+       
+        
+        panel.add(new Button(NAME_BUTTON_AddUsers, new AddUsersFunction(model)));
+        panel.add(new Button(NAME_BUTTON_SetCity, new SetCityFunction(model)));
+         panel.add(new Button(NAME_BUTTON_SetIdGG, new SetIdGGFunction(model)));
+        panel.add(new Button(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction(model)));
+        panel.add(new Button(NAME_BUTTON_Save, new SaveFunction(model)));
+        /*
+        panel.add(new Button(NAME_BUTTON_SetCity, new SetColFn("Город", 6), model));
+       */
 
         setVisible(true);
         //pack();
