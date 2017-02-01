@@ -16,21 +16,18 @@ public class AddUsersFunction extends TableFunction {
 
     ArrayList<String> usersNames = null;
     Translit tr = null;
-    int kolstr = 0;
 
     AddUsersFunction(TableModelExp model) {
-        super(model);}
-
-  
+        super(model);
+    }
 
     @Override
     public void excute() {
-        
+
         tr = new Translit();
         final JFrame frameAddUsers = new JFrame("Добавление списка пользователей");
         frameAddUsers.setBounds(200, 120, 500, 600);
         frameAddUsers.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        frameAddUsers.setVisible(true);
 
         final JTextArea textArea = new JTextArea();
         textArea.setFont(new Font("Courier", Font.PLAIN, 20));
@@ -46,29 +43,23 @@ public class AddUsersFunction extends TableFunction {
                 StringTokenizer st = new StringTokenizer(textArea.getText(), "\n\r");
                 while (st.hasMoreTokens()) {
                     usersNames.add(st.nextToken());
-                    kolstr++;
                 }
                 //если диалоговое окно закрыть,закрывается и окно ввода пользователей
                 //надо подумать!!!!
-                if (kolstr == 0) {
+                if (usersNames.isEmpty()) {
                     JOptionPane.showMessageDialog(frameAddUsers, "Введите список пользователей!");
-                }
-                if (kolstr < model.getRowCount()) {
-                    for (int i = model.getRowCount(); i > kolstr; i--) {
-                        model.removeRow(i - 1);
-                    }
-
-                } else if (kolstr > model.getRowCount()) {
-                    for (int i = model.getRowCount(); i < kolstr; i++) {
+                } else {
+                    model.clearTable();
+                    for (int i = 0; i < usersNames.size(); i++) {
                         model.addRow(new Object[model.getColumnCount()]);
+                        parsLine(i);
                     }
                 }
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    parsLine(i);
-                }
+
                 frameAddUsers.dispose();
             }
         });
+        frameAddUsers.setVisible(true);
     }
 
     public void parsLine(int index) {
@@ -86,8 +77,6 @@ public class AddUsersFunction extends TableFunction {
             i++;
         }
 
-
     }
-    
-  
+
 }

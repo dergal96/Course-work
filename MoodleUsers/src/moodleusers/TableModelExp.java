@@ -25,4 +25,13 @@ class TableModelExp extends DefaultTableModel {
             addRow(new Object[getColumnCount()]);
         }
     }
+
+    public void clearTable() {
+        
+        for (int i = getRowCount(); i!=0; i--) {
+            removeRow(i-1);
+           
+        }
+        
+    }
 }
