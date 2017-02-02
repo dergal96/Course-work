@@ -18,12 +18,12 @@ public class SetEndPasswordsFunction extends FillColumnFunction {
 
     @Override
     public String formatData(String userInput, int indexRow) {
-        return model.getValueAt(indexRow, 0) + userInput;
+        return model.getValueAt(indexRow, Columns.USERNAME) + userInput;
         //return model.getValueAt(indexRow, Columns.PASSWORD) + userInput;
     }
 
     @Override
     public int getColumnToFillNumber() {
-        return 1;
+        return Columns.PASSWORD;
     }
 }

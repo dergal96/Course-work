@@ -23,6 +23,6 @@ public class SetCityFunction extends FillColumnFunction {
 
     @Override
     public int getColumnToFillNumber() {
-        return 5;
+        return Columns.CITY;
     }
 }

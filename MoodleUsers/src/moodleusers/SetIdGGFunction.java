@@ -23,6 +23,6 @@ public class SetIdGGFunction extends FillColumnFunction {
 
     @Override
     public int getColumnToFillNumber() {
-        return 6;
+        return Columns.COHORT;
     }
 }

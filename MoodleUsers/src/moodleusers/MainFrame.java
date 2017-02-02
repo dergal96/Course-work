@@ -48,6 +48,7 @@ public class MainFrame extends JFrame {
         model = new TableModelExp();
         model.setCountRowDefault(10);
         table = new JTable(model);
+        table.getTableHeader().setReorderingAllowed(false);//запрет менять местами колонки
         add(new JScrollPane(table), gbc_scrollPane);
 
         panel = new JPanel();
