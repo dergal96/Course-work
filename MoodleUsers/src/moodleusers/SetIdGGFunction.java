@@ -3,27 +3,26 @@ package moodleusers;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SetEndPasswordsFunction extends FillColumnFunction {
+public class SetIdGGFunction extends FillColumnFunction {
 
-    SetEndPasswordsFunction(TableModelExp model, String titleshowInputDialog) {
+    SetIdGGFunction(TableModelExp model, String titleshowInputDialog) {
         super(model, titleshowInputDialog);
     }
 
     @Override
     public boolean validateUserInput(String userInput) {
-        Pattern pattern = Pattern.compile("[A-Za-z\\d\\p{Punct}]*");  
+        Pattern pattern = Pattern.compile("[A-Za-z\\d_]*");
         Matcher matcher = pattern.matcher(userInput);
         return matcher.matches();
     }
 
     @Override
     public String formatData(String userInput, int indexRow) {
-        return model.getValueAt(indexRow, 0) + userInput;
-        //return model.getValueAt(indexRow, Columns.PASSWORD) + userInput;
+        return userInput;
     }
 
     @Override
     public int getColumnToFillNumber() {
-        return 1;
+        return 6;
     }
 }

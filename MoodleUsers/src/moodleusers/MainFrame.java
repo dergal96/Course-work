@@ -65,9 +65,9 @@ public class MainFrame extends JFrame {
 
 
         panel.add(new Button(NAME_BUTTON_AddUsers, new AddUsersFunction(model)));
-        panel.add(new Button(NAME_BUTTON_SetCity, new FillColumnFunction("¬ведите название города", 5, model)));
-        panel.add(new Button(NAME_BUTTON_SetIdGG, new FillColumnFunction("¬ведите название ID глобгруппы", 6, model)));
-        panel.add(new Button(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction(model)));
+        panel.add(new Button(NAME_BUTTON_SetCity, new SetCityFunction(model,"¬ведите название города")));
+        panel.add(new Button(NAME_BUTTON_SetIdGG, new SetIdGGFunction(model,"¬ведите название ID глобгруппы")));
+        panel.add(new Button(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction(model, "¬ведите окончание парол€")));
         panel.add(new Button(NAME_BUTTON_Save, new SaveFunction(model)));
         
 
