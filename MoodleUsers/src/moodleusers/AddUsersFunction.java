@@ -72,11 +72,12 @@ public class AddUsersFunction extends TableFunction {
                 model.setValueAt(slovo, index, i);
                 model.setValueAt(tr.toTranslit(slovo).toLowerCase() + "@mail.ru", index, i + 2);
             } else {
-                model.setValueAt(slovo, index, i); //if slovo is name
+                model.setValueAt(slovo, index, i);//if slovo is name
+                model.setValueAt("Благовещенск", index, i+2);//set city default
             }
             i++;
         }
 
     }
-
+    
 }

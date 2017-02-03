@@ -1,8 +1,5 @@
 package moodleusers;
 
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,11 +24,20 @@ class TableModelExp extends DefaultTableModel {
     }
 
     public void clearTable() {
-        
-        for (int i = getRowCount(); i!=0; i--) {
-            removeRow(i-1);
-           
+
+        for (int i = getRowCount(); i != 0; i--) {
+            removeRow(i - 1);
+
         }
-        
+    }
+
+   
+    public void setValueAt(Object aValue, int row, int column) {
+        Vector rowVector = (Vector) dataVector.elementAt(row);
+        rowVector.setElementAt(aValue, column);
+        if (column==Columns.USERNAME) {
+            rowVector.setElementAt(aValue+"@mail.ru", Columns.EMAIL);
+        }
+        fireTableCellUpdated(row, column);
     }
 }

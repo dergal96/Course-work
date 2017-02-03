@@ -51,6 +51,10 @@ public class MainFrame extends JFrame {
         table.getTableHeader().setReorderingAllowed(false);//запрет мен€ть местами колонки
         add(new JScrollPane(table), gbc_scrollPane);
 
+        int row = table.getSelectionModel().getLeadSelectionIndex();
+        int col = table.getColumnModel().getSelectionModel().getLeadSelectionIndex();
+        
+        table.addAncestorListener(null);
         panel = new JPanel();
         gbc_panel = new GridBagConstraints();
         gbc_panel.insets = new Insets(5, 1, 5, 5);
@@ -61,16 +65,13 @@ public class MainFrame extends JFrame {
         gbc_panel.gridy = 0;
         add(panel, gbc_panel);
 
-
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-
         panel.add(new Button(NAME_BUTTON_AddUsers, new AddUsersFunction(model)));
-        panel.add(new Button(NAME_BUTTON_SetCity, new SetCityFunction(model,"¬ведите название города")));
-        panel.add(new Button(NAME_BUTTON_SetIdGG, new SetIdGGFunction(model,"¬ведите название ID глобгруппы")));
+        panel.add(new Button(NAME_BUTTON_SetCity, new SetCityFunction(model, "¬ведите название города")));
+        panel.add(new Button(NAME_BUTTON_SetIdGG, new SetIdGGFunction(model, "¬ведите название ID глобгруппы")));
         panel.add(new Button(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction(model, "¬ведите окончание парол€")));
         panel.add(new Button(NAME_BUTTON_Save, new SaveFunction(model)));
-        
+
 
         setVisible(true);
         //pack();
