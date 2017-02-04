@@ -11,9 +11,7 @@ public class RemoveRowsFunction extends TableFunction {
 
     @Override
     public void excute() {
-
         int[] selectRows = table.getSelectedRows();
-
         if (selectRows.length != 0) {
             for (int i = 0; i < selectRows.length; i++) {
                 model.removeRow(selectRows[i] - i);
@@ -21,7 +19,5 @@ public class RemoveRowsFunction extends TableFunction {
         } else {
             JOptionPane.showMessageDialog(null, "Выберете строку(и) для удаления!");
         }
-
-
     }
 }

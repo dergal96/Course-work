@@ -1,6 +1,7 @@
 package moodleusers;
 
 import java.util.Vector;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 class TableModelExp extends DefaultTableModel {
@@ -36,5 +37,13 @@ class TableModelExp extends DefaultTableModel {
             rowVector.setElementAt(value + "@mail.ru", Columns.EMAIL);
         }
         fireTableCellUpdated(row, column);
+    }
+
+    public String[] getDataRow(int index) {
+        String[] dataRow = new String[getColumnCount()];
+        for (int j = 0; j < getColumnCount(); j++) {
+            dataRow[j] = (String) getValueAt(index, j);
+        }
+        return dataRow;
     }
 }
