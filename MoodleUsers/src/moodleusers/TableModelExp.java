@@ -36,7 +36,7 @@ class TableModelExp extends DefaultTableModel {
         if (column == Columns.USERNAME & !value.equals("")) {
             rowVector.setElementAt(value + "@mail.ru", Columns.EMAIL);
         }
-        fireTableCellUpdated(row, column);
+        fireTableDataChanged();
     }
 
     public String[] getDataRow(int index) {

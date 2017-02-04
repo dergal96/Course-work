@@ -17,8 +17,10 @@ public class MainFrame extends JFrame {
     private static final String NAME_BUTTON_SetCity = "Установить город";
     private static final String NAME_BUTTON_SetIdGG = "Установить ID глобгруппе";
     private static final String NAME_BUTTON_SetEndPasswords = "Заполнить пароль";
-    private static final String NAME_BUTTON_Save = "Сохранить как";
     private static final String NAME_BUTTON_RemoveRow = "Удалить строку(и)";
+    private static final String NAME_BUTTON_AddRow = "Добавить строку";
+    private static final String NAME_BUTTON_Save = "Сохранить как";
+    
     private GridBagConstraints gbc_scrollPane;
     private JTable table;
     private TableModelExp model;
@@ -72,6 +74,7 @@ public class MainFrame extends JFrame {
         panel.add(new Button(NAME_BUTTON_SetIdGG, new SetIdGGFunction(table, "Введите название ID глобгруппы")));
         panel.add(new Button(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction(table, "Введите окончание пароля")));
         panel.add(new Button(NAME_BUTTON_RemoveRow, new RemoveRowsFunction(table)));
+        panel.add(new Button(NAME_BUTTON_AddRow, new AddRowsFunction(table)));
         panel.add(new Button(NAME_BUTTON_Save, new SaveFunction(table)));
 
 
