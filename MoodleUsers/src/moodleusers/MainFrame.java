@@ -18,6 +18,7 @@ public class MainFrame extends JFrame {
     private static final String NAME_BUTTON_SetIdGG = "Установить ID глобгруппе";
     private static final String NAME_BUTTON_SetEndPasswords = "Заполнить пароль";
     private static final String NAME_BUTTON_Save = "Сохранить как";
+    private static final String NAME_BUTTON_RemoveRow = "Удалить строку(и)";
     private GridBagConstraints gbc_scrollPane;
     private JTable table;
     private TableModelExp model;
@@ -53,7 +54,7 @@ public class MainFrame extends JFrame {
 
         int row = table.getSelectionModel().getLeadSelectionIndex();
         int col = table.getColumnModel().getSelectionModel().getLeadSelectionIndex();
-        
+
         table.addAncestorListener(null);
         panel = new JPanel();
         gbc_panel = new GridBagConstraints();
@@ -66,11 +67,12 @@ public class MainFrame extends JFrame {
         add(panel, gbc_panel);
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(new Button(NAME_BUTTON_AddUsers, new AddUsersFunction(model)));
-        panel.add(new Button(NAME_BUTTON_SetCity, new SetCityFunction(model, "Введите название города")));
-        panel.add(new Button(NAME_BUTTON_SetIdGG, new SetIdGGFunction(model, "Введите название ID глобгруппы")));
-        panel.add(new Button(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction(model, "Введите окончание пароля")));
-        panel.add(new Button(NAME_BUTTON_Save, new SaveFunction(model)));
+        panel.add(new Button(NAME_BUTTON_AddUsers, new AddUsersFunction(table)));
+        panel.add(new Button(NAME_BUTTON_SetCity, new SetCityFunction(table, "Введите название города")));
+        panel.add(new Button(NAME_BUTTON_SetIdGG, new SetIdGGFunction(table, "Введите название ID глобгруппы")));
+        panel.add(new Button(NAME_BUTTON_SetEndPasswords, new SetEndPasswordsFunction(table, "Введите окончание пароля")));
+        panel.add(new Button(NAME_BUTTON_RemoveRow, new RemoveRowsFunction(table)));
+        panel.add(new Button(NAME_BUTTON_Save, new SaveFunction(table)));
 
 
         setVisible(true);

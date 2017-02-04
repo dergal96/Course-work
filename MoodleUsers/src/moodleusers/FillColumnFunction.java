@@ -1,14 +1,15 @@
 package moodleusers;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public abstract class FillColumnFunction extends TableFunction {
 
     String titleshowInputDialog;
     int numberColumn;
 
-    public FillColumnFunction(TableModelExp model, String titleshowInputDialog) {
-        super(model);
+    public FillColumnFunction(JTable table, String titleshowInputDialog) {
+        super(table);
         this.titleshowInputDialog = titleshowInputDialog;
     }
 

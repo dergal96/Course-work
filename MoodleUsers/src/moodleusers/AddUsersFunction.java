@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 public class AddUsersFunction extends TableFunction {
@@ -17,8 +18,8 @@ public class AddUsersFunction extends TableFunction {
     ArrayList<String> usersNames = null;
     Translit tr = null;
 
-    AddUsersFunction(TableModelExp model) {
-        super(model);
+    AddUsersFunction (JTable table) {
+        super(table);
     }
 
     @Override
@@ -55,7 +56,6 @@ public class AddUsersFunction extends TableFunction {
                         parsLine(i);
                     }
                 }
-
                 frameAddUsers.dispose();
             }
         });
@@ -63,21 +63,33 @@ public class AddUsersFunction extends TableFunction {
     }
 
     public void parsLine(int index) {
+
+        /* StringTokenizer st = new StringTokenizer(usersNames.get(index), " ");
+         String slovo = st.nextToken();
+         model.setValueAt(tr.toTranslit(slovo).toLowerCase(), index, Columns.USERNAME);
+         model.setValueAt(slovo, index, Columns.LASTNAME);
+         model.setValueAt(tr.toTranslit(slovo).toLowerCase() + "@mail.ru", index, Columns.EMAIL);
+         slovo = st.nextToken();
+         model.setValueAt(slovo, index, Columns.FIRSTNAME);
+         model.setValueAt("Благовещенск", index, Columns.CITY);
+
+         */
+
+
         int i = 2;
         StringTokenizer st = new StringTokenizer(usersNames.get(index), " ");
         while (st.hasMoreTokens() & i < 4) {
             String slovo = st.nextToken();
-            if (i == 2) {//if slovo is family name
+            if (i == 2) {
                 model.setValueAt(tr.toTranslit(slovo).toLowerCase(), index, i - 2);//запись фамилии на англ в 1столб
                 model.setValueAt(slovo, index, i);
                 model.setValueAt(tr.toTranslit(slovo).toLowerCase() + "@mail.ru", index, i + 2);
             } else {
-                model.setValueAt(slovo, index, i);//if slovo is name
-                model.setValueAt("Благовещенск", index, i+2);//set city default
+                model.setValueAt(slovo, index, i);
+                model.setValueAt("Благовещенск", index, i + 2);//set city default
             }
             i++;
         }
 
     }
-    
 }

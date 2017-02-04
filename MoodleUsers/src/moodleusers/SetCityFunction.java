@@ -2,11 +2,12 @@ package moodleusers;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JTable;
 
 public class SetCityFunction extends FillColumnFunction {
 
-    SetCityFunction(TableModelExp model, String titleshowInputDialog) {
-        super(model, titleshowInputDialog);
+    SetCityFunction(JTable table, String titleshowInputDialog) {
+        super(table, titleshowInputDialog);
     }
 
     @Override

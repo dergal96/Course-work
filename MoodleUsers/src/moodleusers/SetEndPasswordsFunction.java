@@ -2,11 +2,12 @@ package moodleusers;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JTable;
 
 public class SetEndPasswordsFunction extends FillColumnFunction {
 
-    SetEndPasswordsFunction(TableModelExp model, String titleshowInputDialog) {
-        super(model, titleshowInputDialog);
+    SetEndPasswordsFunction(JTable table, String titleshowInputDialog) {
+        super(table, titleshowInputDialog);
     }
 
     @Override

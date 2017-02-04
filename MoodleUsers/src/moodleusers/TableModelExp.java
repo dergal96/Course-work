@@ -24,19 +24,16 @@ class TableModelExp extends DefaultTableModel {
     }
 
     public void clearTable() {
-
         for (int i = getRowCount(); i != 0; i--) {
             removeRow(i - 1);
-
         }
     }
 
-   
-    public void setValueAt(Object aValue, int row, int column) {
+    public void setValueAt(Object value, int row, int column) {
         Vector rowVector = (Vector) dataVector.elementAt(row);
-        rowVector.setElementAt(aValue, column);
-        if (column==Columns.USERNAME) {
-            rowVector.setElementAt(aValue+"@mail.ru", Columns.EMAIL);
+        rowVector.setElementAt(value, column);
+        if (column == Columns.USERNAME & !value.equals("")) {
+            rowVector.setElementAt(value + "@mail.ru", Columns.EMAIL);
         }
         fireTableCellUpdated(row, column);
     }
